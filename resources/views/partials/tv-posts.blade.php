@@ -1,0 +1,87 @@
+<div id="tv-posts" class="tv-posts section panel overflow-hidden bg-gray-800 text-white uc-dark">
+    <div class="section-outer panel py-4 sm:py-5">
+        <div class="container max-w-xl">
+            <div class="section-inner panel vstack gap-3 xl:gap-4">
+                
+                <!-- Заголовок блока -->
+                <div class="section-header panel vstack items-center justify-center text-center gap-1">
+                    <h2 class="h6 lg:h5 m-0 text-white hstack gap-1">
+                        <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
+                        <span>Hand-picked News</span>
+                    </h2>
+                </div>
+
+                <!-- Контент блока -->
+                <div class="section-content">
+                    <div class="block-layout grid-overlay-layout">
+                        <div class="block-content">
+                            <div class="row child-cols-12 md:child-cols-6 g-1 col-match">
+
+                                <!-- Основная новость -->
+                                @if($featuredPost)
+                                <div>
+                                    <article class="post type-post panel vstack gap-2 lg:gap-3 h-100">
+                                        <div class="post-media panel uc-transition-toggle overflow-hidden h-100">
+                                            <div class="featured-image bg-gray-25 dark:bg-gray-800 h-100 d-none md:d-block">
+                                                <img src="{{ asset('storage/' . $featuredPost->image) }}" alt="{{ $featuredPost->title }}" class="media-cover image">
+                                            </div>
+                                            <div class="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-16x9 d-block md:d-none">
+                                                <img src="{{ asset('storage/' . $featuredPost->image) }}" alt="{{ $featuredPost->title }}" class="media-cover image">
+                                            </div>
+                                        </div>
+                                        <div class="position-cover bg-gradient-to-t from-black to-transparent opacity-90"></div>
+                                        <div class="post-header panel vstack justify-end items-start gap-1 sm:gap-2 p-2 sm:p-4 position-cover text-white">
+                                            <h3 class="post-title h5 sm:h4 xl:h3 m-0 max-w-600px text-white text-truncate-2">
+                                                <a class="text-none text-white" href="{{ route('news.show', $featuredPost->id) }}">{{ $featuredPost->title }}</a>
+                                            </h3>
+                                            <div class="post-meta panel hstack gap-1 fs-7 fw-medium text-opacity-60">
+                                                <a class="text-none hover:text-primary" href="{{ route('category.show', $featuredPost->category_id) }}">{{ $featuredPost->category->name }}</a>
+                                                <span>❘</span>
+                                                <span>{{ $featuredPost->created_at->format('M d, Y') }}</span>
+                                            </div>
+                                        </div>
+                                        <a href="{{ route('news.show', $featuredPost->id) }}" class="position-cover"></a>
+                                    </article>
+                                </div>
+                                @endif
+
+                                <!-- Остальные новости -->
+                                <div>
+                                    <div class="panel">
+                                        <div class="row child-cols-6 g-1">
+                                            @foreach($tvPosts as $post)
+                                            <div>
+                                                <article class="post type-post panel vstack gap-2 lg:gap-3">
+                                                    <div class="post-media panel uc-transition-toggle overflow-hidden">
+                                                        <div class="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-1x1 sm:ratio-4x3">
+                                                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="media-cover image">
+                                                        </div>
+                                                    </div>
+                                                    <div class="position-cover bg-gradient-to-t from-black to-transparent opacity-90"></div>
+                                                    <div class="post-header panel vstack justify-end items-start gap-1 p-2 position-cover text-white">
+                                                        <h3 class="post-title h6 sm:h5 lg:h6 xl:h5 m-0 max-w-600px text-white text-truncate-2">
+                                                            <a class="text-none text-white" href="{{ route('news.show', $post->id) }}">{{ $post->title }}</a>
+                                                        </h3>
+                                                        <div class="post-meta panel hstack gap-1 fs-7 fw-medium text-opacity-60">
+                                                            <a class="text-none hover:text-primary" href="{{ route('category.show', $post->category_id) }}">{{ $post->category->name }}</a>
+                                                            <span>❘</span>
+                                                            <span>{{ $post->created_at->format('M d, Y') }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <a href="{{ route('news.show', $post->id) }}" class="position-cover"></a>
+                                                </article>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Конец section-content -->
+
+            </div>
+        </div>
+    </div>
+</div>
