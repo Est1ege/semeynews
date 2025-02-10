@@ -3,7 +3,7 @@
 @section('title', 'Главная страница')
 
 @section('content')
-    <!-- Динамический вывод новостей -->
+    <!-- Динамический вывод новостей
     <div class="section panel overflow-hidden">
         <div class="container max-w-xl">
             <div class="section-inner panel vstack gap-4">
@@ -20,7 +20,7 @@
                 @endforeach
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Включение дополнительных блоков -->
     <div id="wrapper" class="wrap overflow-hidden-x">

@@ -30,7 +30,13 @@ class NewsController extends Controller
     
         // Посты по категории Politics
         $politicsCategory = Category::where('name', 'Politics')->first();
-        $politicsPosts = News::where('category_id', optional($politicsCategory)->id)->latest()->take(2)->get();
+
+        if ($politicsCategory) {
+            $politicsPosts = News::where('category_id', $politicsCategory->id)->latest()->take(2)->get();
+        } else {
+            $politicsPosts = collect(); // Возвращаем пустую коллекцию, если категория не найдена
+        }
+
     
         // TV посты
         $tvCategory = Category::where('name', 'TV')->first();
@@ -43,12 +49,18 @@ class NewsController extends Controller
         // Категория "Most Watched"
         $mostWatchedCategory = Category::where('name', 'Most Watched')->first();
 
+        $trendingPosts = News::where('is_trending', true)->latest()->take(5)->get();
+
+        if ($trendingPosts->isEmpty()) {
+            $trendingPosts = collect(); // Создание пустой коллекции для предотвращения ошибок
+        }
 
         // Передача всех данных в представление
         return view('pages.home', compact(
             'newsList', 
             'opinions', 
-            'globalPosts', 
+            'globalPosts',
+            'trendingPosts', 
             'nationalPosts', 
             'categories',
             'mostWatchedCategory',  // Добавляем эту переменную 
