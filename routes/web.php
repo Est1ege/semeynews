@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PollController;
+use App\Http\Controllers\PostController;
 use TCG\Voyager\Facades\Voyager;
 
 
@@ -30,11 +30,12 @@ Route::get('/category/{id}', [NewsController::class, 'category'])->name('categor
 Route::post('/post/{id}/comment', [CommentController::class, 'store'])->name('comment.store');
 
 // Голосование в опросах
-Route::post('/poll/vote', [PollController::class, 'vote'])->name('poll.vote');
-Route::get('/poll/archive', [PollController::class, 'archive'])->name('poll.archive');
+Route::post('/poll/vote', [PostController::class, 'vote'])->name('poll.vote');
+Route::get('/poll/archive', [PostController::class, 'archive'])->name('poll.archive');
 
 // Панель администратора Voyager
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+Route::get('/blog', [PostController::class, 'index'])->name('blog.index');

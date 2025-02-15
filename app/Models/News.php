@@ -30,5 +30,10 @@ class News extends Model {
     public function views() {
         return $this->hasMany(View::class);
     }
+
+    public function newsable()
+    {
+        return $this->morphTo();
+    }
     
 }

@@ -1,10 +1,10 @@
+<!-- Section start -->
 <div id="national-posts" class="national-posts section panel overflow-hidden">
     <div class="section-outer panel pb-4 sm:pb-5">
         <div class="container max-w-xl">
             <div class="section-inner">
                 <div class="row child-cols-12 lg:child-cols g-4" data-uc-grid>
-
-                    <!-- Блок Global -->
+                    <!-- Global Category -->
                     <div>
                         <div class="block-layout grid-layout vstack gap-2 xl:gap-3 panel overflow-hidden">
                             <div class="block-header panel border-bottom pb-1 min-h-40px">
@@ -13,11 +13,10 @@
                                     <a class="post-title text-none hover:text-primary duration-150" href="{{ route('category.show', ['id' => 1]) }}">Global</a>
                                 </h2>
                             </div>
-
-                            <!-- Динамическое наполнение -->
                             <div class="block-content panel vstack lg:hstack items-start gap-3">
+                                @if($globalPosts->isNotEmpty())
                                 <div class="block-left w-100 lg:w-3/4">
-                                    @if($globalPosts->isNotEmpty())
+                                    <div>
                                         <article class="post type-post panel vstack gap-1 lg:gap-2">
                                             <div class="post-media panel uc-transition-toggle overflow-hidden">
                                                 <div class="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-16x9">
@@ -36,12 +35,12 @@
                                                 </h3>
                                             </div>
                                         </article>
-                                    @endif
+                                    </div>
                                 </div>
-
-                                <!-- Остальные посты Global -->
+                                @endif
                                 <div class="block-right panel vstack gap-3">
                                     @foreach($globalPosts->skip(1) as $post)
+                                    <div>
                                         <article class="post type-post panel">
                                             <div class="row child-cols g-2" data-uc-grid>
                                                 <div>
@@ -64,24 +63,24 @@
                                                 </div>
                                             </div>
                                         </article>
+                                    </div>
                                     @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Блок National -->
+                    <!-- National Category -->
                     <div class="lg:col-4">
                         <div class="block-layout grid-layout vstack gap-2 xl:gap-3 panel overflow-hidden">
                             <div class="block-header panel border-bottom pb-1 min-h-40px">
                                 <h2 class="h6 lg:h5 m-0 text-inherit dark:text-white hstack gap-1">
                                     <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                                    <a class="post-title text-none hover:text-primary" href="{{ route('category.show', ['id' => 2]) }}">National</a>
+                                    <a class="post-title text-none hover:text-primary duration-150" href="{{ route('category.show', ['id' => 2]) }}">National</a>
                                 </h2>
                             </div>
-
                             <div class="block-content panel vstack gap-3">
                                 @foreach($nationalPosts as $post)
+                                <div>
                                     <article class="post type-post panel vstack gap-1 lg:gap-2">
                                         <div class="post-media panel uc-transition-toggle overflow-hidden">
                                             <div class="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-16x9">
@@ -100,13 +99,14 @@
                                             </h3>
                                         </div>
                                     </article>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Section end -->

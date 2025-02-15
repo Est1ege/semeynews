@@ -4392,16 +4392,16 @@
         },
         {
             "name": "spatie/laravel-translatable",
-            "version": "6.10.1",
+            "version": "6.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "2bf4dcd7b348f7bb113acfc73c23ee8dff964fba"
+                "reference": "6150f6d55f4712279883d56490406f8a92a9c72a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/2bf4dcd7b348f7bb113acfc73c23ee8dff964fba",
-                "reference": "2bf4dcd7b348f7bb113acfc73c23ee8dff964fba",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/6150f6d55f4712279883d56490406f8a92a9c72a",
+                "reference": "6150f6d55f4712279883d56490406f8a92a9c72a",
                 "shasum": ""
             },
             "require": {
@@ -4463,7 +4463,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-translatable/issues",
-                "source": "https://github.com/spatie/laravel-translatable/tree/6.10.1"
+                "source": "https://github.com/spatie/laravel-translatable/tree/6.10.2"
             },
             "funding": [
                 {
@@ -4471,7 +4471,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-31T11:04:34+00:00"
+            "time": "2025-02-03T08:49:09+00:00"
         },
         {
             "name": "symfony/cache",

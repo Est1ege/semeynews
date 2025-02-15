@@ -1,3 +1,4 @@
+<!-- Section start -->
 <div id="tv-posts" class="tv-posts section panel overflow-hidden bg-gray-800 text-white uc-dark">
     <div class="section-outer panel py-4 sm:py-5">
         <div class="container max-w-xl">
@@ -23,10 +24,11 @@
                                     <article class="post type-post panel vstack gap-2 lg:gap-3 h-100">
                                         <div class="post-media panel uc-transition-toggle overflow-hidden h-100">
                                             <div class="featured-image bg-gray-25 dark:bg-gray-800 h-100 d-none md:d-block">
-                                                <img src="{{ asset('storage/' . $featuredPost->image) }}" alt="{{ $featuredPost->title }}" class="media-cover image">
+                                                <canvas class="h-100 w-100"></canvas>
+                                                <img class="uc-transition-scale-up uc-transition-opaque media-cover image uc-transition-scale-up uc-transition-opaque" src="{{ asset('storage/' . $featuredPost->image) }}" alt="{{ $featuredPost->title }}" data-uc-img="loading: lazy">
                                             </div>
                                             <div class="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-16x9 d-block md:d-none">
-                                                <img src="{{ asset('storage/' . $featuredPost->image) }}" alt="{{ $featuredPost->title }}" class="media-cover image">
+                                                <img class="uc-transition-scale-up uc-transition-opaque media-cover image uc-transition-scale-up uc-transition-opaque" src="{{ asset('storage/' . $featuredPost->image) }}" alt="{{ $featuredPost->title }}" data-uc-img="loading: lazy">
                                             </div>
                                         </div>
                                         <div class="position-cover bg-gradient-to-t from-black to-transparent opacity-90"></div>
@@ -34,10 +36,21 @@
                                             <h3 class="post-title h5 sm:h4 xl:h3 m-0 max-w-600px text-white text-truncate-2">
                                                 <a class="text-none text-white" href="{{ route('news.show', $featuredPost->id) }}">{{ $featuredPost->title }}</a>
                                             </h3>
-                                            <div class="post-meta panel hstack gap-1 fs-7 fw-medium text-opacity-60">
-                                                <a class="text-none hover:text-primary" href="{{ route('category.show', $featuredPost->category_id) }}">{{ $featuredPost->category->name }}</a>
-                                                <span>❘</span>
-                                                <span>{{ $featuredPost->created_at->format('M d, Y') }}</span>
+                                            <div class="post-meta panel hstack justify-start gap-1 fs-7 fw-medium text-gray-900 dark:text-white text-opacity-60 d-none md:d-flex z-1">
+                                                <div>
+                                                    <div class="post-category hstack gap-narrow fw-semibold">
+                                                        <a class="text-none hover:text-primary dark:text-primary duration-150" href="{{ route('category.show', $featuredPost->category_id) }}">{{ $featuredPost->category->name }}</a>
+                                                    </div>
+                                                </div>
+                                                <div class="sep d-none md:d-block">❘</div>
+                                                <div class="d-none md:d-block">
+                                                    <div class="post-date hstack gap-narrow">
+                                                        <span>{{ $featuredPost->created_at->format('M j, Y') }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="cstack w-16px h-16px ms-narrow d-none md:d-inline-flex position-absolute top-0 end-0">
+                                                    <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="Add to bookmark"><i class="icon-narrow unicon-bookmark-add"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                         <a href="{{ route('news.show', $featuredPost->id) }}" class="position-cover"></a>
@@ -54,7 +67,7 @@
                                                 <article class="post type-post panel vstack gap-2 lg:gap-3">
                                                     <div class="post-media panel uc-transition-toggle overflow-hidden">
                                                         <div class="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-1x1 sm:ratio-4x3">
-                                                            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="media-cover image">
+                                                            <img class="uc-transition-scale-up uc-transition-opaque media-cover image uc-transition-scale-up uc-transition-opaque" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" data-uc-img="loading: lazy">
                                                         </div>
                                                     </div>
                                                     <div class="position-cover bg-gradient-to-t from-black to-transparent opacity-90"></div>
@@ -62,10 +75,21 @@
                                                         <h3 class="post-title h6 sm:h5 lg:h6 xl:h5 m-0 max-w-600px text-white text-truncate-2">
                                                             <a class="text-none text-white" href="{{ route('news.show', $post->id) }}">{{ $post->title }}</a>
                                                         </h3>
-                                                        <div class="post-meta panel hstack gap-1 fs-7 fw-medium text-opacity-60">
-                                                            <a class="text-none hover:text-primary" href="{{ route('category.show', $post->category_id) }}">{{ $post->category->name }}</a>
-                                                            <span>❘</span>
-                                                            <span>{{ $post->created_at->format('M d, Y') }}</span>
+                                                        <div class="post-meta panel hstack justify-start gap-1 fs-7 fw-medium text-gray-900 dark:text-white text-opacity-60 d-none md:d-flex z-1">
+                                                            <div>
+                                                                <div class="post-category hstack gap-narrow fw-semibold">
+                                                                    <a class="text-none hover:text-primary dark:text-primary duration-150" href="{{ route('category.show', $post->category_id) }}">{{ $post->category->name }}</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="sep d-none md:d-block">❘</div>
+                                                            <div class="d-none md:d-block">
+                                                                <div class="post-date hstack gap-narrow">
+                                                                    <span>{{ $post->created_at->format('M j, Y') }}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="cstack w-16px h-16px ms-narrow d-none md:d-inline-flex position-absolute top-0 end-0">
+                                                                <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="Add to bookmark"><i class="icon-narrow unicon-bookmark-add"></i></a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <a href="{{ route('news.show', $post->id) }}" class="position-cover"></a>
@@ -85,3 +109,4 @@
         </div>
     </div>
 </div>
+<!-- Section end -->

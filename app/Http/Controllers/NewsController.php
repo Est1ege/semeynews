@@ -11,23 +11,24 @@ class NewsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {
+    public function index()
+    {
         // Общий список новостей с пагинацией
         $newsList = News::latest()->paginate(5);
-    
+
         // Категория "Opinions"
         $opinions = News::where('category_id', 7)->latest()->take(8)->get();
-    
+
         // Категории Global и National
         $globalPosts = News::where('category_id', 1)->latest()->take(5)->get();
         $nationalPosts = News::where('category_id', 2)->latest()->take(5)->get();
-    
+
         // Категории с постами
         $categories = Category::with('posts')->get();
-    
+
         // Самые просматриваемые посты
         $mostWatchedPosts = News::orderBy('views', 'desc')->take(3)->get();
-    
+
         // Посты по категории Politics
         $politicsCategory = Category::where('name', 'Politics')->first();
 
@@ -37,15 +38,14 @@ class NewsController extends Controller
             $politicsPosts = collect(); // Возвращаем пустую коллекцию, если категория не найдена
         }
 
-    
         // TV посты
         $tvCategory = Category::where('name', 'TV')->first();
         $featuredPost = News::where('is_featured', true)->first();
         $tvPosts = News::where('category_id', optional($tvCategory)->id)->latest()->take(4)->get();
-    
+
         // Посты для слайдера
         $sliderPosts = News::latest()->take(5)->get();
-    
+
         // Категория "Most Watched"
         $mostWatchedCategory = Category::where('name', 'Most Watched')->first();
 
