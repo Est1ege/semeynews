@@ -10,7 +10,7 @@
                             <div class="block-header panel border-bottom pb-1 min-h-40px">
                                 <h2 class="h6 lg:h5 m-0 text-inherit dark:text-white hstack gap-1">
                                     <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                                    <a class="post-title text-none hover:text-primary duration-150" href="{{ route('category.show', ['id' => 1]) }}">Global</a>
+                                    <a class="post-title text-none hover:text-primary duration-150" href="{{ route('blog.category', ['id' => 1]) }}">{{ __('Global') }}</a>
                                 </h2>
                             </div>
                             <div class="block-content panel vstack lg:hstack items-start gap-3">
@@ -26,7 +26,7 @@
                                             </div>
                                             <div class="post-header panel vstack gap-1">
                                                 <div class="post-meta hstack gap-1 fs-7 fw-medium text-gray-900 dark:text-white text-opacity-60">
-                                                    <a class="text-none hover:text-primary" href="{{ route('category.show', $globalPosts[0]->category_id) }}">{{ $globalPosts[0]->category->name }}</a>
+                                                    <a class="text-none hover:text-primary" href="{{ route('blog.category', $globalPosts[0]->category_id) }}">{{ $globalPosts[0]->category->name }}</a>
                                                     <span>❘</span>
                                                     <span>{{ $globalPosts[0]->created_at->format('M d, Y') }}</span>
                                                 </div>
@@ -75,7 +75,7 @@
                             <div class="block-header panel border-bottom pb-1 min-h-40px">
                                 <h2 class="h6 lg:h5 m-0 text-inherit dark:text-white hstack gap-1">
                                     <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                                    <a class="post-title text-none hover:text-primary duration-150" href="{{ route('category.show', ['id' => 2]) }}">National</a>
+                                    <a class="post-title text-none hover:text-primary duration-150" href="{{ route('blog.category', ['id' => 2]) }}">{{ __('National') }}</a>
                                 </h2>
                             </div>
                             <div class="block-content panel vstack gap-3">
@@ -90,7 +90,7 @@
                                         </div>
                                         <div class="post-header panel vstack gap-1">
                                             <div class="post-meta hstack gap-1 fs-7 fw-medium text-gray-900 dark:text-white text-opacity-60">
-                                                <a class="text-none hover:text-primary" href="{{ route('category.show', $post->category_id) }}">{{ $post->category->name }}</a>
+                                                <a class="text-none hover:text-primary" href="{{ route('blog.category', $post->category_id) }}">{{ $post->category->name }}</a>
                                                 <span>❘</span>
                                                 <span>{{ $post->created_at->format('M d, Y') }}</span>
                                             </div>

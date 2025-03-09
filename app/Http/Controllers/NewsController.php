@@ -13,13 +13,16 @@ class NewsController extends Controller
      */
     public function index()
     {
+        // Получаем текущую локаль
+        $locale = app()->getLocale();
+        
         // Общий список новостей с пагинацией
         $newsList = News::latest()->paginate(5);
 
-        // Категория "Opinions"
+        // Категория "Opinions" (используем ID)
         $opinions = News::where('category_id', 7)->latest()->take(8)->get();
 
-        // Категории Global и National
+        // Категории Global и National (используем ID)
         $globalPosts = News::where('category_id', 1)->latest()->take(5)->get();
         $nationalPosts = News::where('category_id', 2)->latest()->take(5)->get();
 
@@ -29,30 +32,30 @@ class NewsController extends Controller
         // Самые просматриваемые посты
         $mostWatchedPosts = News::orderBy('views', 'desc')->take(3)->get();
 
-        // Посты по категории Politics
-        $politicsCategory = Category::where('name', 'Politics')->first();
-
+        // Для категорий используем ID вместо поиска по имени
+        $politicsCategory = Category::find(3); // Предполагаем, что ID равен 3
+        
         if ($politicsCategory) {
             $politicsPosts = News::where('category_id', $politicsCategory->id)->latest()->take(2)->get();
         } else {
-            $politicsPosts = collect(); // Возвращаем пустую коллекцию, если категория не найдена
+            $politicsPosts = collect();
         }
 
         // TV посты
-        $tvCategory = Category::where('name', 'TV')->first();
+        $tvCategory = Category::find(4); // Предполагаем, что ID равен 4
         $featuredPost = News::where('is_featured', true)->first();
-        $tvPosts = News::where('category_id', optional($tvCategory)->id)->latest()->take(4)->get();
+        $tvPosts = News::where('category_id', $tvCategory?->id)->latest()->take(4)->get();
 
         // Посты для слайдера
         $sliderPosts = News::latest()->take(5)->get();
 
-        // Категория "Most Watched"
-        $mostWatchedCategory = Category::where('name', 'Most Watched')->first();
+        // Most Watched категория
+        $mostWatchedCategory = Category::find(5); // Предполагаем, что ID равен 5
 
         $trendingPosts = News::where('is_trending', true)->latest()->take(5)->get();
 
         if ($trendingPosts->isEmpty()) {
-            $trendingPosts = collect(); // Создание пустой коллекции для предотвращения ошибок
+            $trendingPosts = collect();
         }
 
         // Передача всех данных в представление
@@ -63,9 +66,9 @@ class NewsController extends Controller
             'trendingPosts', 
             'nationalPosts', 
             'categories',
-            'mostWatchedCategory',  // Добавляем эту переменную 
+            'mostWatchedCategory',
             'mostWatchedPosts',
-            'politicsCategory',   // Добавляем переменную 
+            'politicsCategory',
             'politicsPosts', 
             'featuredPost',
             'tvCategory', 
@@ -74,93 +77,39 @@ class NewsController extends Controller
         ));
     }
     
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('news.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required',
-            'image' => 'nullable|image|max:2048'
-        ]);
-
-        $imagePath = $request->file('image') ? $request->file('image')->store('news_images', 'public') : null;
-
-        News::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'image' => $imagePath
-        ]);
-
-        return redirect()->route('news.index')->with('success', 'Новость добавлена!');
-    }
-
     /**
      * Display the specified resource.
      */
     public function show($id) {
-        $newsItem = News::findOrFail($id);
-        return view('pages.post', compact('newsItem'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        $newsItem = News::findOrFail($id);
-        return view('news.edit', compact('newsItem'));
+        try {
+            $post = News::findOrFail($id);
+            $relatedPosts = News::where('category_id', $post->category_id ?? 0)
+                             ->where('id', '!=', $post->id)
+                             ->take(1)
+                             ->get();
+            
+            return view('pages.post', compact('post', 'relatedPosts'));
+        } catch (\Exception $e) {
+            return response()->view('errors.custom', ['error' => $e->getMessage()], 500);
+        }
     }
 
     public function category($id) {
-        $category = Category::with('news')->findOrFail($id);
-        return view('pages.category', compact('category'));
+        $category = Category::findOrFail($id);
+        $posts = News::where('category_id', $category->id)
+                    ->latest()
+                    ->paginate(15);
+        
+        return view('pages.category', compact('category', 'posts'));
     }
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
+
+    public function vote(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required',
-            'image' => 'nullable|image|max:2048'
-        ]);
-
-        $newsItem = News::findOrFail($id);
-
-        if ($request->file('image')) {
-            $imagePath = $request->file('image')->store('news_images', 'public');
-            $newsItem->image = $imagePath;
-        }
-
-        $newsItem->update([
-            'title' => $request->title,
-            'content' => $request->content
-        ]);
-
-        return redirect()->route('news.index')->with('success', 'Новость обновлена!');
+        return redirect()->back()->with('success', 'Ваш голос принят!');
     }
 
-    
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
+    public function archive()
     {
-        $newsItem = News::findOrFail($id);
-        $newsItem->delete();
-
-        return redirect()->route('news.index')->with('success', 'Новость удалена!');
-    }
+        return view('pages.archive');
+    } 
 }

@@ -8,7 +8,7 @@
                 <div class="section-header panel vstack items-center justify-center text-center gap-1">
                     <h2 class="h6 lg:h5 m-0 text-white hstack gap-1">
                         <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                        <span>Hand-picked News</span>
+                        <span>{{ __('Hand-picked News') }}</span>
                     </h2>
                 </div>
 
@@ -39,7 +39,7 @@
                                             <div class="post-meta panel hstack justify-start gap-1 fs-7 fw-medium text-gray-900 dark:text-white text-opacity-60 d-none md:d-flex z-1">
                                                 <div>
                                                     <div class="post-category hstack gap-narrow fw-semibold">
-                                                        <a class="text-none hover:text-primary dark:text-primary duration-150" href="{{ route('category.show', $featuredPost->category_id) }}">{{ $featuredPost->category->name }}</a>
+                                                        <a class="text-none hover:text-primary dark:text-primary duration-150" href="{{ route('blog.category', $featuredPost->category_id) }}">{{ $featuredPost->category->name }}</a>
                                                     </div>
                                                 </div>
                                                 <div class="sep d-none md:d-block">❘</div>
@@ -49,7 +49,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="cstack w-16px h-16px ms-narrow d-none md:d-inline-flex position-absolute top-0 end-0">
-                                                    <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="Add to bookmark"><i class="icon-narrow unicon-bookmark-add"></i></a>
+                                                    <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="{{ __('Add to bookmark') }}"><i class="icon-narrow unicon-bookmark-add"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                                                         <div class="post-meta panel hstack justify-start gap-1 fs-7 fw-medium text-gray-900 dark:text-white text-opacity-60 d-none md:d-flex z-1">
                                                             <div>
                                                                 <div class="post-category hstack gap-narrow fw-semibold">
-                                                                    <a class="text-none hover:text-primary dark:text-primary duration-150" href="{{ route('category.show', $post->category_id) }}">{{ $post->category->name }}</a>
+                                                                    <a class="text-none hover:text-primary dark:text-primary duration-150" href="{{ route('blog.category', $post->category_id) }}">{{ $post->category->name }}</a>
                                                                 </div>
                                                             </div>
                                                             <div class="sep d-none md:d-block">❘</div>
@@ -88,7 +88,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="cstack w-16px h-16px ms-narrow d-none md:d-inline-flex position-absolute top-0 end-0">
-                                                                <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="Add to bookmark"><i class="icon-narrow unicon-bookmark-add"></i></a>
+                                                                <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="{{ __('Add to bookmark') }}"><i class="icon-narrow unicon-bookmark-add"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>

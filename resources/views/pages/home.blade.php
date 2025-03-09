@@ -3,25 +3,6 @@
 @section('title', 'Главная страница')
 
 @section('content')
-    <!-- Динамический вывод новостей
-    <div class="section panel overflow-hidden">
-        <div class="container max-w-xl">
-            <div class="section-inner panel vstack gap-4">
-                @foreach($newsList as $news)
-                    <article class="post panel vstack gap-3">
-                        <h3 class="post-title h5 m-0">
-                            <a href="{{ route('news.show', $news->id) }}">{{ $news->title }}</a>
-                        </h3>
-                        @if($news->image)
-                            <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}" class="img-fluid">
-                        @endif
-                        <p>{{ Str::limit($news->content, 150) }}</p>
-                    </article>
-                @endforeach
-            </div>
-        </div>
-    </div> -->
-
     <!-- Включение дополнительных блоков -->
     <div id="wrapper" class="wrap overflow-hidden-x">
         @include('partials.slider-posts')

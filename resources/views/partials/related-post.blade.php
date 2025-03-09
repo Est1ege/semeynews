@@ -13,7 +13,7 @@
         <div class="post-header panel vstack gap-1">
             <h5 class="h6 md:h5 m-0">
                 <a class="text-none" href="{{ route('blog.show', $post->slug) }}">
-                    {{ $post->title }}
+                {{ $post->title }}
                 </a>
             </h5>
             <div class="post-date hstack gap-narrow fs-7 opacity-60">

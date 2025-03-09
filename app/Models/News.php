@@ -4,36 +4,42 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Translatable\HasTranslations;
 
-class News extends Model {
+class News extends Model
+{
+    use HasFactory;
     use HasTranslations;
 
+    protected $table = 'news';
+    
+    // Переводимые поля
+    public $translatable = [
+        'title',
+        'content',
+        'excerpt'
+    ];
+    
     protected $fillable = [
         'title',
         'content',
+        'excerpt',
         'image',
         'category_id',
-        'is_featured',  // Добавляем это поле
+        'author_id',
+        'views',
+        'is_featured',
+        'is_trending'
     ];
-    
-    protected $translatable = ['title', 'content'];
 
-    public function category() {
+    public function category(): BelongsTo
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function comments() {
-        return $this->hasMany(Comment::class);
-    }
-
-    public function views() {
-        return $this->hasMany(View::class);
-    }
-
-    public function newsable()
+    public function author(): BelongsTo
     {
-        return $this->morphTo();
+        return $this->belongsTo(User::class, 'author_id');
     }
-    
 }

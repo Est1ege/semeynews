@@ -13,7 +13,7 @@
                                 <a href="{{ route('home') }}">
                                     <img class="uc-transition-scale-up uc-transition-opaque uc-logo w-80px" src="{{ asset('assets/images/demo-two/common/logo.svg') }}" alt="News5">
                                 </a>
-                                <p class="fs-6 me-8">A comprehensive electronic newspaper that deals with all issues that concern national public opinion.</p>
+                                <p class="fs-6 me-8">{{ __('A comprehensive electronic newspaper that deals with all issues that concern national public opinion.') }}</p>
                                 <ul class="nav-x gap-2">
                                     <li><a class="hover:text-gray dark:hover:text-gray-200" href="#fb"><i class="icon icon-2 unicon-logo-facebook"></i></a></li>
                                     <li><a class="hover:text-gray dark:hover:text-gray-200" href="#x"><i class="icon icon-2 unicon-logo-x-filled"></i></a></li>
@@ -27,16 +27,13 @@
                         <div>
                             <div class="widget links-widget vstack gap-3">
                                 <div class="widgt-title">
-                                    <h4 class="fs-7 fw-medium text-uppercase text-dark dark:text-white text-opacity-50">Topics</h4>
+                                    <h4 class="fs-7 fw-medium text-uppercase text-dark dark:text-white text-opacity-50">{{ __('Topics') }}</h4>
                                 </div>
                                 <div class="widgt-content">
                                     <ul class="nav-y gap-2 fs-6 fw-medium text-dark dark:text-white">
-                                        <li><a href="{{ route('category.show', ['id' => 1]) }}">Social</a></li>
-                                        <li><a href="{{ route('category.show', ['id' => 2]) }}">Politics</a></li>
-                                        <li><a href="{{ route('category.show', ['id' => 3]) }}">Economy</a></li>
-                                        <li><a href="{{ route('category.show', ['id' => 4]) }}">World</a></li>
-                                        <li><a href="{{ route('category.show', ['id' => 5]) }}">Sports</a></li>
-                                        <li><a href="{{ route('category.show', ['id' => 6]) }}">Arts</a></li>
+                                        @foreach(App\Models\Category::take(6)->get() as $category)
+                                            <li><a href="{{ route('blog.category', $category->id) }}">{{ $category->name }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -46,16 +43,16 @@
                         <div>
                             <div class="widget links-widget vstack gap-3">
                                 <div class="widgt-title">
-                                    <h4 class="fs-7 fw-medium text-uppercase text-dark dark:text-white text-opacity-50">Trending now</h4>
+                                    <h4 class="fs-7 fw-medium text-uppercase text-dark dark:text-white text-opacity-50">{{ __('Trending now') }}</h4>
                                 </div>
                                 <div class="widgt-content">
                                     <ul class="nav-y gap-2 fs-6 fw-medium text-dark dark:text-white">
-                                        <li><a href="#">Podcasts</a></li>
-                                        <li><a href="#">News TV</a></li>
-                                        <li><a href="#">National</a></li>
-                                        <li><a href="#">Global</a></li>
-                                        <li><a href="#">Dialogues</a></li>
-                                        <li><a href="#">Opinions</a></li>
+                                        <li><a href="#">{{ __('Podcasts') }}</a></li>
+                                        <li><a href="#">{{ __('News TV') }}</a></li>
+                                        <li><a href="#">{{ __('National') }}</a></li>
+                                        <li><a href="#">{{ __('Global') }}</a></li>
+                                        <li><a href="#">{{ __('Dialogues') }}</a></li>
+                                        <li><a href="#">{{ __('Opinions') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -65,13 +62,13 @@
                         <div class="d-none lg:d-block">
                             <div class="widget links-widget vstack gap-3">
                                 <div class="widgt-title">
-                                    <h4 class="fs-7 fw-medium text-uppercase text-dark dark:text-white text-opacity-50">About</h4>
+                                    <h4 class="fs-7 fw-medium text-uppercase text-dark dark:text-white text-opacity-50">{{ __('About') }}</h4>
                                 </div>
                                 <div class="widgt-content">
                                     <ul class="nav-y gap-2 fs-6 fw-medium text-dark dark:text-white">
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Career</a></li>
-                                        <li><a href="#">Sitemap</a></li>
+                                        <li><a href="#">{{ __('About') }}</a></li>
+                                        <li><a href="#">{{ __('Career') }}</a></li>
+                                        <li><a href="#">{{ __('Sitemap') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -85,26 +82,25 @@
                 <!-- Нижняя часть футера -->
                 <div class="uc-footer-bottom panel hstack gap-2 justify-between fs-6 dark:text-white">
                     <div class="footer-copyright vstack sm:hstack gap-1 lg:gap-2">
-                        <p>News5 © {{ date('Y') }}, All rights reserved.</p>
+                        <p>News5 © {{ date('Y') }}, {{ __('All rights reserved.') }}</p>
                         <div class="vr d-none lg:d-block"></div>
                         <ul class="nav-x gap-2 fw-medium">
-                            <li><a href="#">Privacy policy</a></li>
-                            <li><a href="#">Terms of use</a></li>
+                            <li><a href="#">{{ __('Privacy policy') }}</a></li>
+                            <li><a href="#">{{ __('Terms of use') }}</a></li>
                         </ul>
                     </div>
 
-                    <!-- Выбор языка -->
+                    <!-- Добавляем переключатель языков -->
                     <div class="footer-lang d-inline-block">
                         <a href="#lang_switcher" class="hstack gap-1 text-none fw-medium">
                             <i class="icon icon-1 unicon-earth-filled"></i>
-                            <span>English</span>
+                            <span>{{ strtoupper(app()->getLocale()) }}</span>
                             <span data-uc-drop-parent-icon=""></span>
                         </a>
                         <div class="p-2 bg-white dark:bg-gray-800 shadow-xs rounded w-150px" data-uc-drop="mode: click;">
                             <ul class="nav-y gap-1 fw-medium">
-                                <li><a href="#en">English</a></li>
-                                <li><a href="#ar">العربية</a></li>
-                                <li><a href="#ch">中文</a></li>
+                                <li><a href="{{ route('locale.switch', 'ru') }}">Русский</a></li>
+                                <li><a href="{{ route('locale.switch', 'kk') }}">Қазақша</a></li>
                             </ul>
                         </div>
                     </div>

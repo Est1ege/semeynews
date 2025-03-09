@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use TCG\Voyager\Facades\Voyager;
 
 
@@ -24,18 +24,23 @@ Route::get('/', [NewsController::class, 'index'])->name('home');
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
 // Категории
-Route::get('/category/{id}', [NewsController::class, 'category'])->name('category.show');
+Route::get('/blog/category/{id}', [CategoryController::class, 'show'])->name('blog.category');
 
 // Комментарии (доступны для всех пользователей)
-Route::post('/post/{id}/comment', [CommentController::class, 'store'])->name('comment.store');
+Route::post('/news/{id}/comment', [CommentController::class, 'store'])->name('comment.store');
 
 // Голосование в опросах
-Route::post('/poll/vote', [PostController::class, 'vote'])->name('poll.vote');
-Route::get('/poll/archive', [PostController::class, 'archive'])->name('poll.archive');
+Route::post('/poll/vote', [NewsController::class, 'vote'])->name('poll.vote');
+Route::get('/poll/archive', [NewsController::class, 'archive'])->name('poll.archive');
 
-// Панель администратора Voyager
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
+// Добавьте прямо над блоком Voyager::routes()
+Route::get('/admin-test', function () {
+    return redirect()->route('voyager.dashboard');
 });
 
-Route::get('/blog', [PostController::class, 'index'])->name('blog.index');
+
+// Панель администратора Voyager
+
+
+
+Route::get('/locale/{locale}', [App\Http\Controllers\LocaleController::class, 'switchLocale'])->name('locale.switch');

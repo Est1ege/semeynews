@@ -9,12 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up() {
+    public function up(): void
+    {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text('text');
-            $table->string('author_name')->nullable(); // Имя (необязательно)
-            $table->foreignId('news_id')->constrained();
+            $table->foreignId('post_id')->constrained('news')->onDelete('cascade');
+            $table->foreignId('parent_id')->nullable()->constrained('comments')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('author_name');
+            $table->string('author_email');
+            $table->text('content');
+            $table->boolean('is_approved')->default(false);
             $table->timestamps();
         });
     }

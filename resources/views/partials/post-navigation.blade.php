@@ -14,7 +14,7 @@
             <span class="fs-7 opacity-60">@lang('Previous Article')</span>
             <h6 class="h6 lg:h5 m-0">{{ $previousPost->title }}</h6>
         </div>
-        <a href="{{ route('blog.show', $previousPost->slug) }}" class="position-cover"></a>
+        <a href="{{ route('news3.show', $previousPost->slug) }}" class="position-cover"></a>
     </div>
     @endisset
 

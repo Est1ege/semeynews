@@ -9,7 +9,7 @@
                             <div class="block-header panel">
                                 <h2 class="h6 lg:h5 m-0 text-inherit dark:text-white hstack gap-1">
                                     <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                                    <a class="text-none hover:text-primary duration-150" href="{{ route('category.show', ['id' => 1]) }}">Most watched</a>
+                                    <a class="text-none hover:text-primary duration-150" href="{{ route('blog.category', ['id' => 1]) }}">{{ __('Most watched') }}</a>
                                 </h2>
                             </div>
                             <div class="block-content">
@@ -51,7 +51,7 @@
                             <div class="block-header panel hstack justify-between px-2 py-1 bg-gray-800 text-white uc-dark">
                                 <h2 class="h6 lg:h5 m-0 text-inherit dark:text-white hstack gap-1">
                                     <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                                    <a class="text-none hover:text-primary duration-150" href="{{ route('category.show', ['id' => 2]) }}">Politics</a>
+                                    <a class="text-none hover:text-primary duration-150" href="{{ route('blog.category', ['id' => 2]) }}">{{ __('Politics') }}</a>
                                 </h2>
                                 <ul class="nav-x gap-narrow">
                                     <li>
@@ -77,7 +77,7 @@
                                                 <div class="post-meta panel hstack justify-start gap-1 fs-7 fw-medium text-gray-900 dark:text-white text-opacity-60 d-none md:d-flex z-1">
                                                     <div>
                                                         <div class="post-category hstack gap-narrow fw-semibold">
-                                                            <a class="text-none hover:text-primary dark:text-primary duration-150" href="{{ route('category.show', $post->category_id) }}">{{ $post->category->name }}</a>
+                                                            <a class="text-none hover:text-primary dark:text-primary duration-150" href="{{ route('blog.category', $post->category_id) }}">{{ $post->category->name }}</a>
                                                         </div>
                                                     </div>
                                                     <div class="sep d-none md:d-block">❘</div>

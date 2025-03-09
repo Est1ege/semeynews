@@ -15,7 +15,7 @@
                                                         <div class="post-meta panel hstack justify-center gap-1 fs-7 fw-medium text-gray-900 dark:text-white text-opacity-60 d-none md:d-flex z-1">
                                                             <div>
                                                                 <div class="post-category hstack gap-narrow fw-semibold">
-                                                                    <a class="text-none hover:text-primary dark:text-primary duration-150" href="{{ route('category.show', $post->category->id) }}">{{ $post->category->name }}</a>
+                                                                    <a class="text-none hover:text-primary dark:text-primary duration-150" href="{{ route('blog.category', $post->category->id) }}">{{ $post->category->name }}</a>
                                                                 </div>
                                                             </div>
                                                             <div class="sep d-none md:d-block">❘</div>
@@ -55,7 +55,7 @@
                                 <div class="block-header panel vstack items-center justify-center text-center gap-1 mb-3">
                                     <h2 class="block-title h5 m-0 hstack gap-1 border-bottom pb-1 dark:text-white">
                                         <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                                        <span>Hot now</span>
+                                        <span>{{ __('Hot now') }}</span>
                                     </h2>
                                 </div>
                                 <div class="block-content panel row sep-x gx-4 gy-3 lg:gy-2">
@@ -80,7 +80,7 @@
                                 <div class="block-header panel vstack items-center justify-center mb-2 px-2 py-1 bg-gray-800 text-white uc-dark">
                                     <h2 class="block-title h6 lg:h5 m-0 cstack gap-1">
                                         <i class="icon icon-narrow unicon-dot-mark text-red" data-uc-animate="flash"></i>
-                                        <span>Live now</span>
+                                        <span>{{ __('Live now') }}</span>
                                     </h2>
                                 </div>
                                 <div class="block-content panel vstack gap-3">
