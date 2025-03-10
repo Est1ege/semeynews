@@ -5,9 +5,9 @@
     <div class="breadcrumbs panel z-1 py-2 bg-gray-25 dark:bg-gray-100 dark:bg-opacity-5 dark:text-white">
         <div class="container max-w-xl">
             <ul class="breadcrumb nav-x justify-center gap-1 fs-7 sm:fs-6 m-0">
-                <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                <li><a href="{{ route('home') }}">{{ __('navigation.home') }}</a></li>
                 <li><i class="unicon-chevron-right opacity-50"></i></li>
-                <li><span class="opacity-50">{{ $category->name ?? $category->name }}</span></li>
+                <li><span class="opacity-50">{{ $category->name }}</span></li>
             </ul>
         </div>
     </div>
@@ -16,10 +16,10 @@
         <div class="container max-w-xl">
             <div class="panel vstack gap-3 sm:gap-6 lg:gap-9">
                 <header class="page-header panel vstack text-center">
-                    <h1 class="h3 lg:h1">{{ __('Category') }}: {{ $category->name }}</h1>
+                    <h1 class="h3 lg:h1">{{ __('navigation.category') }}: {{ $category->name }}</h1>
                     <span class="m-0 opacity-60">
-                        {{ __('Showed') }} {{ $posts->count() }} {{ __('posts out of') }} {{ $posts->total() }} {{ __('total under') }} <br class="d-block lg:d-none">
-                        "{{ $category->name }}" {{ __('category') }}.
+                        {{ __('category.showed') }} {{ $posts->count() }} {{ __('category.posts_out_of') }} {{ $posts->total() }} {{ __('category.total_under') }} <br class="d-block lg:d-none">
+                        "{{ $category->name }}" {{ __('category.category_word') }}.
                     </span>
                 </header>
                 <div class="row g-4 xl:g-8">
@@ -58,7 +58,7 @@
                                                         <div class="hstack gap-2">
                                                             <div>
                                                                 <div class="post-date hstack gap-narrow">
-                                                                    <span>{{ \Carbon\Carbon::parse($post->created_at)->format('M j, Y') }}</span>
+                                                                    <span>{{ \App\Helpers\DateFormatter::format($post->created_at, 'full') }}</span>
                                                                 </div>
                                                             </div>
                                                             <div>

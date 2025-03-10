@@ -10,7 +10,6 @@
         @include('partials.trending-posts')
         @include('partials.category-posts')
         @include('partials.national-posts')
-        @include('partials.opinions')
     </div>
 @endsection
 

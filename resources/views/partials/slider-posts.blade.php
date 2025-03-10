@@ -21,7 +21,7 @@
                                                             <div class="sep d-none md:d-block">❘</div>
                                                             <div class="d-none md:d-block">
                                                                 <div class="post-date hstack gap-narrow">
-                                                                    <span>{{ $post->created_at->format('M d, Y') }}</span>
+                                                                    <span>@formatDate($post->created_at, 'full')</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -55,7 +55,7 @@
                                 <div class="block-header panel vstack items-center justify-center text-center gap-1 mb-3">
                                     <h2 class="block-title h5 m-0 hstack gap-1 border-bottom pb-1 dark:text-white">
                                         <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                                        <span>{{ __('Hot now') }}</span>
+                                        <span>{{ __('sections.hot_now') }}</span>
                                     </h2>
                                 </div>
                                 <div class="block-content panel row sep-x gx-4 gy-3 lg:gy-2">
@@ -63,7 +63,7 @@
                                         <div>
                                             <article class="post type-post panel d-flex gap-2">
                                                 <div>
-                                                    <div class="fs-7 fw-bold text-center translate-y-narrow bg-gray-50 dark:bg-white dark:text-black min-w-48px">{{ $post->created_at->format('H:i') }}</div>
+                                                    <div class="fs-7 fw-bold text-center translate-y-narrow bg-gray-50 dark:bg-white dark:text-black min-w-48px">{{ $post->created_at->format(__('dates.time_format')) }}</div>
                                                 </div>
                                                 <h6 class="fs-6 lg:fs-7 xl:fs-6 fw-medium text-truncate-2">
                                                     <a class="text-none hover:text-primary duration-150" href="{{ route('news.show', $post->id) }}">{{ $post->title }}</a>
@@ -80,7 +80,7 @@
                                 <div class="block-header panel vstack items-center justify-center mb-2 px-2 py-1 bg-gray-800 text-white uc-dark">
                                     <h2 class="block-title h6 lg:h5 m-0 cstack gap-1">
                                         <i class="icon icon-narrow unicon-dot-mark text-red" data-uc-animate="flash"></i>
-                                        <span>{{ __('Live now') }}</span>
+                                        <span>{{ __('sections.live_now') }}</span>
                                     </h2>
                                 </div>
                                 <div class="block-content panel vstack gap-3">
@@ -90,7 +90,7 @@
                                                 <div class="featured-video bg-gray-700 ratio ratio-16x9">
                                                     <video class="video-cover video-lazyload min-h-100px" preload="none" loop playsinline>
                                                         <source src="{{ asset('storage/' . $post->video) }}" type="video/webm">
-                                                        Your browser does not support the video tag.
+                                                        {{ __('sections.video_not_supported') }}
                                                     </video>
                                                 </div>
                                                 <a href="{{ route('news.show', $post->id) }}" class="position-cover"></a>

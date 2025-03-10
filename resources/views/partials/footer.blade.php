@@ -11,7 +11,7 @@
                         <div class="col-12 lg:col-5">
                             <div class="vstack gap-3 dark:text-white">
                                 <a href="{{ route('home') }}">
-                                    <img class="uc-transition-scale-up uc-transition-opaque uc-logo w-80px" src="{{ asset('assets/images/demo-two/common/logo.svg') }}" alt="News5">
+                                    <img class="uc-transition-scale-up uc-transition-opaque uc-logo w-80px" src="{{ asset('assets/images/demo-two/common/logo.svg') }}" alt="Semey News">
                                 </a>
                                 <p class="fs-6 me-8">{{ __('A comprehensive electronic newspaper that deals with all issues that concern national public opinion.') }}</p>
                                 <ul class="nav-x gap-2">
@@ -43,37 +43,20 @@
                         <div>
                             <div class="widget links-widget vstack gap-3">
                                 <div class="widgt-title">
-                                    <h4 class="fs-7 fw-medium text-uppercase text-dark dark:text-white text-opacity-50">{{ __('Trending now') }}</h4>
+                                    <h4 class="fs-7 fw-medium text-uppercase text-dark dark:text-white text-opacity-50">{{ __('navigation.topics') }}</h4>
                                 </div>
                                 <div class="widgt-content">
                                     <ul class="nav-y gap-2 fs-6 fw-medium text-dark dark:text-white">
-                                        <li><a href="#">{{ __('Podcasts') }}</a></li>
-                                        <li><a href="#">{{ __('News TV') }}</a></li>
-                                        <li><a href="#">{{ __('National') }}</a></li>
-                                        <li><a href="#">{{ __('Global') }}</a></li>
-                                        <li><a href="#">{{ __('Dialogues') }}</a></li>
-                                        <li><a href="#">{{ __('Opinions') }}</a></li>
+                                        <li><a href="#">{{ __('navigation.podcasts') }}</a></li>
+                                        <li><a href="#">{{ __('navigation.news_tv') }}</a></li>
+                                        <li><a href="#">{{ __('navigation.national') }}</a></li>
+                                        <li><a href="#">{{ __('navigation.global') }}</a></li>
+                                        <li><a href="#">{{ __('navigation.dialogues') }}</a></li>
+                                        <li><a href="#">{{ __('navigation.opinions') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- О сайте -->
-                        <div class="d-none lg:d-block">
-                            <div class="widget links-widget vstack gap-3">
-                                <div class="widgt-title">
-                                    <h4 class="fs-7 fw-medium text-uppercase text-dark dark:text-white text-opacity-50">{{ __('About') }}</h4>
-                                </div>
-                                <div class="widgt-content">
-                                    <ul class="nav-y gap-2 fs-6 fw-medium text-dark dark:text-white">
-                                        <li><a href="#">{{ __('About') }}</a></li>
-                                        <li><a href="#">{{ __('Career') }}</a></li>
-                                        <li><a href="#">{{ __('Sitemap') }}</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
@@ -82,7 +65,7 @@
                 <!-- Нижняя часть футера -->
                 <div class="uc-footer-bottom panel hstack gap-2 justify-between fs-6 dark:text-white">
                     <div class="footer-copyright vstack sm:hstack gap-1 lg:gap-2">
-                        <p>News5 © {{ date('Y') }}, {{ __('All rights reserved.') }}</p>
+                        <p>Semey News © {{ date('Y') }}, {{ __('All rights reserved.') }}</p>
                         <div class="vr d-none lg:d-block"></div>
                         <ul class="nav-x gap-2 fw-medium">
                             <li><a href="#">{{ __('Privacy policy') }}</a></li>

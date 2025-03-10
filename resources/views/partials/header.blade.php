@@ -59,15 +59,17 @@
                             </div>
                             <div class="uc-navbar-center gap-2 lg:gap-3">
                                 <div class="uc-navbar-item" style="--uc-nav-height: 48px">
-                                    <ul class="nav-x fw-semibold flex-nowrap overflow-x-auto hide-scrollbar uc-horizontal-scroll w-screen md:w-auto md:mask-end-0 mx-n2 px-2 text-white">
-                                        <li class="{{ request()->is('/') ? 'uc-active' : '' }}"><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
-                                        @foreach($categories ?? [] as $category)
-                                            <li class="{{ request()->is('blog/category/' . $category->id) ? 'uc-active' : '' }}">
-                                                <a href="{{ route('blog.category', $category->id) }}">{{ $category->name }}</a>
-                                            </li>
-                                        @endforeach
-                                        <li class="nav-divider vr"></li>
-                                    </ul>
+                                <ul class="nav-x gap-1 fw-semibold flex-nowrap overflow-x-auto hide-scrollbar uc-horizontal-scroll w-screen md:w-auto md:mask-end-0 mx-n2 px-2 text-white">
+                                    <li class="{{ request()->is('/') ? 'uc-active' : '' }}">
+                                        <a href="{{ route('home') }}">{{ __('navigation.home') }}</a>
+                                    </li>
+                                    @foreach($categories ?? [] as $category)
+                                        <li class="{{ request()->is('blog/category/' . $category->id) ? 'uc-active' : '' }}">
+                                            <a href="{{ route('blog.category', $category->id) }}">{{ $category->name }}</a>
+                                        </li>
+                                    @endforeach
+                                    <li class="nav-divider vr"></li>
+                                </ul>
                                 </div>
                             </div>
                             <div class="uc-navbar-right gap-2 lg:gap-3 d-none lg:d-flex">

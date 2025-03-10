@@ -9,7 +9,7 @@
                             <div class="block-header panel">
                                 <h2 class="h6 lg:h5 m-0 text-inherit dark:text-white hstack gap-1">
                                     <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                                    <a class="text-none hover:text-primary duration-150" href="{{ route('blog.category', ['id' => 1]) }}">{{ __('Most watched') }}</a>
+                                    <a class="text-none hover:text-primary duration-150" href="{{ route('blog.category', ['id' => 1]) }}">{{ __('sections.most_watched') }}</a>
                                 </h2>
                             </div>
                             <div class="block-content">
@@ -25,7 +25,7 @@
                                                         </h3>
                                                         <div class="post-meta fs-7 fw-medium text-gray-900 dark:text-white text-opacity-60">
                                                             <div class="post-date hstack gap-narrow">
-                                                                <span>{{ $post->created_at->format('M d, Y') }}</span>
+                                                                <span>@formatDate($post->created_at, 'full')</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -51,7 +51,7 @@
                             <div class="block-header panel hstack justify-between px-2 py-1 bg-gray-800 text-white uc-dark">
                                 <h2 class="h6 lg:h5 m-0 text-inherit dark:text-white hstack gap-1">
                                     <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                                    <a class="text-none hover:text-primary duration-150" href="{{ route('blog.category', ['id' => 2]) }}">{{ __('Politics') }}</a>
+                                    <a class="text-none hover:text-primary duration-150" href="{{ route('blog.category', ['id' => 2]) }}">{{ __('sections.politics') }}</a>
                                 </h2>
                                 <ul class="nav-x gap-narrow">
                                     <li>
@@ -83,11 +83,11 @@
                                                     <div class="sep d-none md:d-block">❘</div>
                                                     <div class="d-none md:d-block">
                                                         <div class="post-date hstack gap-narrow">
-                                                            <span>{{ $post->created_at->format('M d, Y') }}</span>
+                                                            <span>@formatDate($post->created_at, 'full')</span>
                                                         </div>
                                                     </div>
                                                     <div class="cstack w-16px h-16px ms-narrow d-none md:d-inline-flex position-absolute top-0 end-0">
-                                                        <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="Add to bookmark"><i class="icon-narrow unicon-bookmark-add"></i></a>
+                                                        <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="{{ __('sections.add_to_bookmark') }}"><i class="icon-narrow unicon-bookmark-add"></i></a>
                                                     </div>
                                                 </div>
                                                 <h3 class="post-title h6 lg:h5 fw-semibold m-0 text-truncate-2 mb-1">

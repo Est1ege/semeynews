@@ -33,7 +33,7 @@
                                                 <div class="sep d-none md:d-block">❘</div>
                                                 <div class="d-none md:d-block">
                                                     <div class="post-date hstack gap-narrow">
-                                                        <span>{{ $post->created_at->format('M d, Y') }}</span>
+                                                        <span>@formatDate($post->created_at, 'full')</span>
                                                     </div>
                                                 </div>
                                                 <div class="cstack w-16px h-16px ms-narrow d-none md:d-inline-flex position-absolute top-0 end-0">

@@ -39,8 +39,14 @@ Route::get('/admin-test', function () {
 });
 
 
-// Панель администратора Voyager
+// Маршруты для комментариев
+Route::post('/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 
+// Маршруты для админов (управление комментариями)
+Route::middleware(['auth'])->group(function () {
+    Route::patch('/comments/{comment}/toggle-approval', [App\Http\Controllers\CommentController::class, 'toggleApproval'])->name('comments.toggle-approval');
+    Route::delete('/comments/{comment}', [App\Http\Controllers\CommentController::class, 'destroy'])->name('comments.destroy');
+});
 
 
 Route::get('/locale/{locale}', [App\Http\Controllers\LocaleController::class, 'switchLocale'])->name('locale.switch');

@@ -23,10 +23,12 @@
         <!-- Preload styles -->
         <link rel="preload" href="{{ asset('assets/css/unicons.min.css') }}" as="style">
         <link rel="preload" href="{{ asset('assets/css/swiper-bundle.min.css') }}" as="style">
+        
 
         <!-- Apply styles -->
         <link rel="stylesheet" href="{{ asset('assets/css/unicons.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css') }}">
 
         <!-- Preload scripts -->
         <link rel="preload" href="{{ asset('assets/js/libs/jquery.min.js') }}" as="script">

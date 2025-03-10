@@ -42,4 +42,20 @@ class News extends Model
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id');
+    }
+
+    /**
+     * Получить только одобренные комментарии верхнего уровня
+     */
+    public function approvedComments()
+    {
+        return $this->comments()
+            ->approved()
+            ->topLevel()
+            ->orderBy('created_at', 'desc');
+    }
 }

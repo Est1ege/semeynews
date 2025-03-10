@@ -8,7 +8,7 @@
                 <div class="section-header panel vstack items-center justify-center text-center gap-1">
                     <h2 class="h6 lg:h5 m-0 text-white hstack gap-1">
                         <span class="panel d-inline-block bg-primary w-8px h-8px translate-y-px"></span>
-                        <span>{{ __('Hand-picked News') }}</span>
+                        <span>{{ __('sections.hand_picked_news') }}</span>
                     </h2>
                 </div>
 
@@ -45,11 +45,11 @@
                                                 <div class="sep d-none md:d-block">❘</div>
                                                 <div class="d-none md:d-block">
                                                     <div class="post-date hstack gap-narrow">
-                                                        <span>{{ $featuredPost->created_at->format('M j, Y') }}</span>
+                                                        <span>@formatDate($featuredPost->created_at, 'full')</span>
                                                     </div>
                                                 </div>
                                                 <div class="cstack w-16px h-16px ms-narrow d-none md:d-inline-flex position-absolute top-0 end-0">
-                                                    <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="{{ __('Add to bookmark') }}"><i class="icon-narrow unicon-bookmark-add"></i></a>
+                                                    <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="{{ __('sections.add_to_bookmark') }}"><i class="icon-narrow unicon-bookmark-add"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -84,11 +84,11 @@
                                                             <div class="sep d-none md:d-block">❘</div>
                                                             <div class="d-none md:d-block">
                                                                 <div class="post-date hstack gap-narrow">
-                                                                    <span>{{ $post->created_at->format('M j, Y') }}</span>
+                                                                    <span>@formatDate($post->created_at, 'full')</span>
                                                                 </div>
                                                             </div>
                                                             <div class="cstack w-16px h-16px ms-narrow d-none md:d-inline-flex position-absolute top-0 end-0">
-                                                                <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="{{ __('Add to bookmark') }}"><i class="icon-narrow unicon-bookmark-add"></i></a>
+                                                                <a href="#" class="uc-bookmark-toggle w-16px h-16px text-none" data-uc-tooltip="{{ __('sections.add_to_bookmark') }}"><i class="icon-narrow unicon-bookmark-add"></i></a>
                                                             </div>
                                                         </div>
                                                     </div>
