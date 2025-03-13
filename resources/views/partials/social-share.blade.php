@@ -18,12 +18,12 @@
     </li>
     <!-- Instagram -->
     <li>
-        <a class="btn btn-md p-0 border-gray-900 border-opacity-15 w-32px lg:w-48px h-32px lg:h-48px text-dark dark:text-white dark:border-white hover:bg-primary hover:border-primary hover:text-white rounded-circle"
-           href="https://www.instagram.com/"
-           target="_blank"
-           rel="noopener">
-            <i class="unicon-logo-instagram icon-1"></i>
-        </a>
+    <a class="btn btn-md p-0 border-gray-900 border-opacity-15 w-32px lg:w-48px h-32px lg:h-48px text-dark dark:text-white dark:border-white hover:bg-primary hover:border-primary hover:text-white rounded-circle"
+   href="https://www.instagram.com/your_profile_name/" 
+   target="_blank"
+   rel="noopener">
+    <i class="unicon-logo-instagram icon-1"></i>
+</a>
     </li>
     <!-- Telegram -->
     <li>
@@ -68,16 +68,47 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             const url = this.dataset.url;
-           
-            navigator.clipboard.writeText(url).then(() => {
-                const originalInnerHTML = this.innerHTML;
-                this.innerHTML = '<i class="unicon-check-circle icon-1"></i>';
+            
+            // Создаем скрытый input для копирования
+            const tempInput = document.createElement('input');
+            tempInput.value = url;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            
+            try {
+                // Пробуем использовать современный API
+                navigator.clipboard.writeText(url)
+                    .then(showSuccess)
+                    .catch(() => {
+                        // Запасной вариант для HTTP
+                        document.execCommand('copy');
+                        showSuccess();
+                    });
+            } catch (err) {
+                // Еще один запасной вариант
+                document.execCommand('copy');
+                showSuccess();
+            }
+            
+            // Удаляем временный input
+            document.body.removeChild(tempInput);
+            
+            // Функция для отображения успешного копирования
+            function showSuccess() {
+                const originalInnerHTML = button.innerHTML;
+                button.innerHTML = '<i class="unicon-check-circle icon-1"></i>';
+                
+                // Показываем уведомление
+                const notification = document.createElement('div');
+                notification.textContent = 'Ссылка скопирована!';
+                notification.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 9999; box-shadow: 0 2px 10px rgba(0,0,0,0.2);';
+                document.body.appendChild(notification);
+                
                 setTimeout(() => {
-                    this.innerHTML = originalInnerHTML;
+                    button.innerHTML = originalInnerHTML;
+                    document.body.removeChild(notification);
                 }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy URL: ', err);
-            });
+            }
         });
     });
 });

@@ -3,23 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@yield('title', 'News5')</title>
-        <meta name="description" content="News5 - Modern multipurpose blogging website.">
-        <meta name="keywords" content="news, blog, media, magazine, laravel, bootstrap">
+        <title>@yield('title', 'SemeyNews')</title>
+        <meta name="description" content="SemeyNews">
         <meta name="theme-color" content="#2757fd">
 
         <!-- Open Graph Meta -->
-        <meta property="og:title" content="@yield('title', 'News5')">
-        <meta property="og:description" content="A professional-looking news and magazine website.">
-        <meta property="og:image" content="{{ asset('assets/images/common/seo-image.jpg') }}">
+        <meta property="og:title" content="@yield('title', 'SemeyNews')">
+        <meta property="og:description" content="SemeyNews">
         <meta property="og:url" content="{{ url()->current() }}">
         <meta property="og:type" content="website">
 
         <!-- Twitter Meta -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="@yield('title', 'News5')">
-        <meta name="twitter:description" content="A professional-looking news and magazine website.">
-        <meta name="twitter:image" content="{{ asset('assets/images/common/seo-image.jpg') }}">
+        <meta name="twitter:title" content="@yield('title', 'SemeyNews')">
         <!-- Preload styles -->
         <link rel="preload" href="{{ asset('assets/css/unicons.min.css') }}" as="style">
         <link rel="preload" href="{{ asset('assets/css/swiper-bundle.min.css') }}" as="style">
