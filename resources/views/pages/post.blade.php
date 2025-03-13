@@ -66,21 +66,4 @@
     </article>
 </div>
 
-<!-- Для отладки -->
-@if(app()->environment() !== 'production')
-<div style="background: #f0f0f0; padding: 10px; margin: 10px 0; border: 1px solid #ccc; font-family: monospace; font-size: 12px; color: #333;">
-    <h4>Debug Info:</h4>
-    <ul>
-        <li>Image field: {{ $post->image ?? 'NULL' }}</li>
-        <li>Storage base path: {{ storage_path('app/public') }}</li>
-        <li>Asset URL: {{ asset('storage/test.jpg') }}</li>
-        <li>Full image URL: {{ $post->image ? asset('storage/' . $post->image) : 'No image' }}</li>
-        <li>Image exists: {{ $post->image && file_exists(storage_path('app/public/' . $post->image)) ? 'Yes' : 'No' }}</li>
-        @if(isset($imageDebug))
-            <li>Debug data: {{ json_encode($imageDebug) }}</li>
-        @endif
-    </ul>
-</div>
-@endif
-
 @endsection
