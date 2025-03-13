@@ -11,7 +11,7 @@
                         <div class="col-12 lg:col-5">
                             <div class="vstack gap-3 dark:text-white">
                                 <a href="{{ route('home') }}">
-                                    <img class="uc-transition-scale-up uc-transition-opaque uc-logo w-80px" src="{{ asset('assets/images/demo-two/common/logo.svg') }}" alt="Semey News">
+                                    <img class="uc-transition-scale-up uc-transition-opaque uc-logo w-80px" src="{{ asset('assets/images/demo-two/common/logo-night.svg') }}" alt="Semey News">
                                 </a>
                                 <p class="fs-6 me-8">{{ __('A comprehensive electronic newspaper that deals with all issues that concern national public opinion.') }}</p>
                                 <ul class="nav-x gap-2">

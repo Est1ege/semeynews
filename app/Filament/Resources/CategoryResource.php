@@ -62,11 +62,27 @@ class CategoryResource extends Resource
                         Forms\Components\Textarea::make('description')
                             ->label('Описание')
                             ->columnSpan('full'),
+                        
+                        // Добавьте остальные поля без изменений
+                        Forms\Components\Select::make('parent_id')
+                            ->label('Родительская категория')
+                            ->relationship('parent', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->placeholder('Выберите родительскую категорию'),
+    
+                        Forms\Components\TextInput::make('order')
+                            ->label('Порядок отображения')
+                            ->integer()
+                            ->default(0),
+    
+                        Forms\Components\Toggle::make('is_active')
+                            ->label('Активна')
+                            ->default(true),
                     ])
                     ->columns(2),
             ]);
     }
-
     public static function table(Table $table): Table
     {
         return $table
@@ -88,6 +104,23 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('news_count')
                     ->label('Новостей')
                     ->counts('news')
+                    ->sortable(),
+                
+                Tables\Columns\TextColumn::make('parent.name')
+                    ->label('Родительская категория')
+                    ->placeholder('Корневая категория'),
+
+                Tables\Columns\TextColumn::make('order')
+                    ->label('Порядок')
+                    ->sortable(),
+
+                Tables\Columns\IconColumn::make('is_active')
+                    ->label('Активна')
+                    ->boolean(),
+
+                Tables\Columns\TextColumn::make('children_count')
+                    ->label('Подкатегории')
+                    ->counts('children')
                     ->sortable(),
             ])
             ->filters([

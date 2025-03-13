@@ -10,9 +10,23 @@
             <ul class="breadcrumb nav-x justify-center gap-1 fs-7 sm:fs-6 m-0">
                 <a href="{{ route('home') }}">{{ __('navigation.home') }}</a>
                 <li><i class="unicon-chevron-right opacity-50"></i></li>
+  
+
+                @if($post->category && $post->category->parent)
+                <li>
+                    <a href="{{ route('blog.category', $post->category->parent->id) }}">
+                        {{ $post->category->parent->name }}
+                    </a>
+                </li>
+                <li><i class="unicon-chevron-right opacity-50"></i></li>
+                @endif
                 @if($post->category)
-                    <li><a href="{{ route('blog.category', $post->category->id) }}">{{ $post->category->name }}</a></li>
-                    <li><i class="unicon-chevron-right opacity-50"></i></li>
+                <li>
+                    <a href="{{ route('blog.category', $post->category_id) }}">
+                        {{ $post->category->name }}
+                    </a>
+                </li>
+                <li><i class="unicon-chevron-right opacity-50"></i></li>
                 @endif
                 <li><span class="opacity-50">{{ $post->title }}</span></li>
             </ul>

@@ -8,7 +8,7 @@
                             <div class="uc-navbar-center">
                                 <div class="uc-logo text-black dark:text-white">
                                     <a href="{{ route('home') }}">
-                                        <img class="w-80px text-dark dark:text-white" src="{{ asset('assets/images/demo-two/common/logo.svg') }}" alt="News5" data-uc-svg>
+                                        <img class="w-80px text-dark dark:text-white" src="{{ asset('assets/images/demo-two/common/logo-night.svg') }}" alt="SemeyNews" data-uc-svg>
                                     </a>
                                 </div>
                             </div>
@@ -60,16 +60,40 @@
                             <div class="uc-navbar-center gap-2 lg:gap-3">
                                 <div class="uc-navbar-item" style="--uc-nav-height: 48px">
                                 <ul class="nav-x gap-1 fw-semibold flex-nowrap overflow-x-auto hide-scrollbar uc-horizontal-scroll w-screen md:w-auto md:mask-end-0 mx-n2 px-2 text-white">
-                                    <li class="{{ request()->is('/') ? 'uc-active' : '' }}">
-                                        <a href="{{ route('home') }}">{{ __('navigation.home') }}</a>
-                                    </li>
-                                    @foreach($categories ?? [] as $category)
-                                        <li class="{{ request()->is('blog/category/' . $category->id) ? 'uc-active' : '' }}">
-                                            <a href="{{ route('blog.category', $category->id) }}">{{ $category->name }}</a>
+            <li class="{{ request()->is('/') ? 'uc-active' : '' }}">
+                <a href="{{ route('home') }}">{{ __('navigation.home') }}</a>
+            </li>
+            
+            @foreach($categories ?? [] as $category)
+                @if($category->parent_id === null) {{-- Проверяем, что это корневая категория --}}
+                    @if($category->children && $category->children->count() > 0)
+                        <li class="{{ request()->is('blog/category/' . $category->id) || request()->is('blog/category/' . $category->id . '/*') ? 'uc-active' : '' }} dropdown-container">
+                            <a href="{{ route('blog.category', $category->id) }}" class="dropdown-trigger">
+                                {{ $category->name }}
+                                <i class="unicon-angle-down ml-1"></i>
+                            </a>
+                            <div class="dropdown-menu bg-gray-800 shadow-md rounded p-2 z-10" data-uc-drop="mode: hover; pos: bottom-left;">
+                                <ul class="nav-y gap-1">
+                                    @foreach($category->children->sortBy('order') as $child)
+                                        <li class="{{ request()->is('blog/category/' . $child->id) ? 'uc-active' : '' }}">
+                                            <a href="{{ route('blog.category', $child->id) }}" class="text-white hover:text-primary py-1 px-2 d-block">
+                                                {{ $child->name }}
+                                            </a>
                                         </li>
                                     @endforeach
-                                    <li class="nav-divider vr"></li>
                                 </ul>
+                            </div>
+                        </li>
+                    @else
+                        <li class="{{ request()->is('blog/category/' . $category->id) ? 'uc-active' : '' }}">
+                            <a href="{{ route('blog.category', $category->id) }}">{{ $category->name }}</a>
+                        </li>
+                    @endif
+                @endif
+            @endforeach
+            
+            <li class="nav-divider vr"></li>
+        </ul>
                                 </div>
                             </div>
                             <div class="uc-navbar-right gap-2 lg:gap-3 d-none lg:d-flex">

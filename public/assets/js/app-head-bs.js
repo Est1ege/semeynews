@@ -141,3 +141,38 @@ document.addEventListener('DOMContentLoaded', function() {
         gdprNotification.classList.remove('show');
     });
 });
+
+
+// Добавьте этот скрипт в ваш файл JavaScript или перед закрывающим тегом </body>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+    
+    dropdownTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            if (window.innerWidth <= 991) {
+                e.preventDefault();
+                const container = this.closest('.dropdown-container');
+                
+                // Закрываем все другие открытые меню
+                document.querySelectorAll('.dropdown-container.mobile-open').forEach(item => {
+                    if (item !== container) {
+                        item.classList.remove('mobile-open');
+                    }
+                });
+                
+                // Переключаем состояние текущего меню
+                container.classList.toggle('mobile-open');
+            }
+        });
+    });
+    
+    // Закрываем меню при изменении размера окна
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 991) {
+            document.querySelectorAll('.dropdown-container.mobile-open').forEach(item => {
+                item.classList.remove('mobile-open');
+            });
+        }
+    });
+});

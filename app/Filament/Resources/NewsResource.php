@@ -61,6 +61,14 @@ class NewsResource extends Resource
                                 Forms\Components\Textarea::make('excerpt')
                                     ->label('Краткое описание')
                                     ->columnSpan('full'),
+                                
+                                Forms\Components\TextInput::make('views')
+                                    ->label('Количество просмотров')
+                                    ->numeric()
+                                    ->minValue(0)
+                                    ->default(0)
+                                    ->helperText('Установите начальное количество просмотров')
+                                    ->required(),
                             ]),
                     ])
                     ->columnSpan(['lg' => 2]),
@@ -141,6 +149,10 @@ class NewsResource extends Resource
                     ->label('Создано')
                     ->dateTime('d.m.Y H:i')
                     ->sortable(),
+                
+                Tables\Columns\TextColumn::make('views')
+                    ->label('Просмотры')
+                    ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
@@ -158,6 +170,26 @@ class NewsResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+
+                Tables\Actions\Action::make('updateViews')
+                    ->label('Изменить просмотры')
+                    ->icon('heroicon-o-eye')
+                    ->form([
+                        Forms\Components\TextInput::make('views')
+                            ->label('Количество просмотров')
+                            ->numeric()
+                            ->required()
+                            ->minValue(0)
+                            ->default(function (News $record): int {
+                                return $record->views;
+                            }),
+                    ])
+                    ->action(function (News $record, array $data): void {
+                        $record->update([
+                            'views' => $data['views'],
+                        ]);
+                    }),
+
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
@@ -183,3 +215,4 @@ class NewsResource extends Resource
         ];
     }
 }
+
