@@ -7,15 +7,20 @@
         <meta name="description" content="SemeyNews">
         <meta name="theme-color" content="#2757fd">
 
-        <!-- Open Graph Meta -->
-        <meta property="og:title" content="@yield('title', 'SemeyNews')">
-        <meta property="og:description" content="SemeyNews">
-        <meta property="og:url" content="{{ url()->current() }}">
-        <meta property="og:type" content="website">
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="@yield('title', 'SemeyNews')">
+    <meta property="og:description" content="@yield('meta_description', 'Новостной портал города Семей')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="@yield('og_image', asset('assets/images/logo/logo.jpg'))">
+    <meta property="og:site_name" content="SemeyNews">
 
-        <!-- Twitter Meta -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="@yield('title', 'SemeyNews')">
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', 'SemeyNews')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Новостной портал города Семей')">
+    <meta name="twitter:image" content="@yield('og_image', asset('assets/images/logo/logo.jpg'))">
+    
         <!-- Preload styles -->
         <link rel="preload" href="{{ asset('assets/css/unicons.min.css') }}" as="style">
         <link rel="preload" href="{{ asset('assets/css/swiper-bundle.min.css') }}" as="style">
