@@ -86,7 +86,9 @@ class NewsResource extends Resource
                                     ->imageResizeMode('cover')
                                     ->imageCropAspectRatio('16:9')
                                     ->imageResizeTargetWidth('1200')
-                                    ->imageResizeTargetHeight('675'),
+                                    ->imageResizeTargetHeight('675')
+                                    ->getUploadedFileNameForStorageUsing(function (\Livewire\Features\SupportFileUploads\TemporaryUploadedFile $file): string {
+                                        return \Illuminate\Support\Str::uuid() . '.' . $file->getClientOriginalExtension(); }),
                                     
                                 Forms\Components\Select::make('category_id')
                                     ->label('Категория')

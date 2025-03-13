@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -83,6 +84,28 @@ class NewsController extends Controller
     public function show($id) {
         try {
             $post = News::findOrFail($id);
+            
+            // Временное решение для корректного отображения изображений с длинными именами
+            if ($post->image) {
+                $imageExists = file_exists(storage_path('app/public/' . $post->image));
+                
+                // Если имя файла слишком длинное или содержит специальные символы
+                if (strlen($post->image) > 100 || strpos($post->image, 'meta') !== false) {
+                    // Создаем временное изображение с коротким именем
+                    $originalPath = storage_path('app/public/' . $post->image);
+                    $newFileName = 'news_images/' . Str::uuid() . '.jpg';
+                    $newPath = storage_path('app/public/' . $newFileName);
+                    
+                    // Копируем файл, если он существует
+                    if ($imageExists && !file_exists($newPath)) {
+                        \File::copy($originalPath, $newPath);
+                        
+                        // Временно подменяем путь для отображения
+                        $post->tempImageUrl = asset('storage/' . $newFileName);
+                    }
+                }
+            }
+            
             $relatedPosts = News::where('category_id', $post->category_id ?? 0)
                              ->where('id', '!=', $post->id)
                              ->take(1)

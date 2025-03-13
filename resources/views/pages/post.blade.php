@@ -44,10 +44,8 @@
                     
                     <figure class="featured-image m-0">
                         <figure class="ratio ratio-2x1 rounded uc-transition-toggle overflow-hidden bg-gray-25 dark:bg-gray-800">
-                            <img class="media-cover image uc-transition-scale-up uc-transition-opaque" 
-                                 src="{{ $post->image ? asset('storage/' . $post->image) : asset('assets/images/common/img-fallback.png') }}" 
-                                 alt="{{ $post->title }}" 
-                                 data-uc-img="loading: lazy">
+                        <img src="{{ $post->image ? url('storage/' . $post->image) : url('assets/images/common/img-fallback.png') }}" 
+                        alt="{{ $post->title }}">
                         </figure>
                     </figure>
                 </div>
@@ -67,4 +65,22 @@
         </div>
     </article>
 </div>
+
+<!-- Для отладки -->
+@if(app()->environment() !== 'production')
+<div style="background: #f0f0f0; padding: 10px; margin: 10px 0; border: 1px solid #ccc; font-family: monospace; font-size: 12px; color: #333;">
+    <h4>Debug Info:</h4>
+    <ul>
+        <li>Image field: {{ $post->image ?? 'NULL' }}</li>
+        <li>Storage base path: {{ storage_path('app/public') }}</li>
+        <li>Asset URL: {{ asset('storage/test.jpg') }}</li>
+        <li>Full image URL: {{ $post->image ? asset('storage/' . $post->image) : 'No image' }}</li>
+        <li>Image exists: {{ $post->image && file_exists(storage_path('app/public/' . $post->image)) ? 'Yes' : 'No' }}</li>
+        @if(isset($imageDebug))
+            <li>Debug data: {{ json_encode($imageDebug) }}</li>
+        @endif
+    </ul>
+</div>
+@endif
+
 @endsection
